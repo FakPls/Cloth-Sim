@@ -1,39 +1,41 @@
-let par1, par2, par3;
-let r1, r2;
 let g;
+let points = [];
+let ropes = [];
+let numPoints = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  g = createVector(0, 0.1);
+  g = createVector(0, 1);
 
+  for(let i = 0; i < numPoints; i++) {
+    points.push(new Particle(i*width/numPoints, height/2, true));
+  }
 
-  par2 = new Particle(width/2, height/2);
-  par3 = new Particle(width/2 + 150, height/2, true);
-  par1 = new Particle(width/2 - 150, height/2, true);
-  r1 = new Rope(par1, par2);
-  r2 = new Rope(par2, par3);
-  
+  for(let i = 0; i < points.length-1; i++) {
+    ropes.push(new Rope(points[i], points[i+1]));
+  }
+
+  //points[points.length-1].locked = true
   
 }
 
 function draw() {
   background(103, 202, 235);
+  for(let p of points) {
+    p.draw()
+    p.update();
+  }
+  for(let r of ropes) {
+    r.draw()
+    r.update();
+  }
 
-  r1.draw();
-  r1.update();
+  points[0].pos.x = mouseX;
+  points[0].pos.y = mouseY;
 
-  r2.draw();
-  r2.update();
+}
 
-  par1.draw();
-  par1.update();
-
-  par2.draw();
-  par2.update();
-  par2.applyForce(g);
-
-  par3.draw();
-  par3.update();
-
-  
+function mousePressed() {
+  points.push(new Particle(width/2, height/2));
+  ropes.push(new Rope(points[points.length-2], points[points.length-1]));
 }

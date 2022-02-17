@@ -13,9 +13,12 @@ function Particle(x, y, locked) {
 
     Particle.prototype.update = function() {
         if(!this.locked) {
+            this.edges();
             this.pos.add(this.vel);
             this.vel.add(this.acc);
-            this.acc.mult(0);
+            this.acc.set(0, 0);
+            
+            
         }
     }
 
@@ -24,6 +27,14 @@ function Particle(x, y, locked) {
     }
 
     Particle.prototype.setPos = function(newPos) {
+        for(let i = 0; i < 100; i++) {
         this.pos = newPos;
+        }
+    }
+
+    Particle.prototype.edges = function() {
+        if(this.pos.y > height) {
+            this.pos.y = height;
+        }
     }
 }
