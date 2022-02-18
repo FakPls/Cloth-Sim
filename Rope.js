@@ -1,5 +1,5 @@
 function Rope(p1, p2) {
-    this.iterations = 5;
+    this.iterations = 1;
     this.p1 = p1;
     this.p2 = p2;
     this.Len = p5.Vector.dist(this.p1.pos, this.p2. pos);

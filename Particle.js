@@ -7,18 +7,27 @@ function Particle(x, y, locked) {
 
     Particle.prototype.draw = function() {
         noStroke();
-        fill(255);
+        if(this.locked) {
+            fill(255, 0, 0);
+        }
+        else{
+            fill(255);
+        }
+        //fill(255);
         circle(this.pos.x, this.pos.y ,30);
     }
 
     Particle.prototype.update = function() {
         if(!this.locked) {
-            this.edges();
-            this.pos.add(this.vel);
-            this.vel.add(this.acc);
-            this.acc.set(0, 0);
+            // this.pos.add(this.vel);
+            // this.vel.add(this.acc);
+            // this.acc.set(0, 0);
             
-            
+            let posBeforeUpdate = this.pos;
+            this.pos.add(p5.Vector.sub(this.pos, this.prevPos));
+            this.pos.add(this.acc)
+            this.prevPos = posBeforeUpdate;
+            this.acc.mult(0)
         }
     }
 
