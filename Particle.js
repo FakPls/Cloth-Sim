@@ -19,15 +19,15 @@ function Particle(x, y, locked) {
 
     Particle.prototype.update = function() {
         if(!this.locked) {
-            // this.pos.add(this.vel);
-            // this.vel.add(this.acc);
-            // this.acc.set(0, 0);
+            this.pos.add(this.vel);
+            this.vel.add(this.acc);
+            this.acc.set(0, 0);
             
-            let posBeforeUpdate = this.pos;
-            this.pos.add(p5.Vector.sub(this.pos, this.prevPos));
-            this.pos.add(this.acc)
-            this.prevPos = posBeforeUpdate;
-            this.acc.mult(0)
+            // let posBeforeUpdate = this.pos;
+            // this.pos.add(p5.Vector.sub(this.pos, this.prevPos));
+            // this.pos.add(this.acc)
+            // this.prevPos = posBeforeUpdate;
+            // this.acc.mult(0);
         }
     }
 

@@ -1,16 +1,14 @@
 let g;
 let points = [];
 let ropes = [];
-let numPoints = 2;
+let numPoints = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   g = createVector(0, 2);
 
   for(let i = 0; i < numPoints; i++) {
-    for(let j = 0; j < numPoints; j++) {
-      points.push(new Particle(i*width/numPoints, j*height/numPoints));
-    }
+    points.push(new Particle(i*width/numPoints, height/2));
   }
 
   for(let i = 0; i < points.length-1; i++) {
@@ -32,12 +30,12 @@ function draw() {
   for(let p of points) {
     p.draw()
     p.update();
-    p.applyForce(g);
+    //p.applyForce(g);
   }
   
 
-  // points[0].pos.x = mouseX;
-  // points[0].pos.y = mouseY;
+  points[0].pos.x = mouseX;
+  points[0].pos.y = mouseY;
 
 
 }
